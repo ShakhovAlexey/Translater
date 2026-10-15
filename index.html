@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>Иврит → Русский</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="title">🇮🇱 → 🇷🇺 <span>Синхронный переводчик</span></div>
+    <div class="status" id="status" data-state="idle">Остановлен</div>
+    <button class="icon-btn" id="settingsBtn" title="Настройки" aria-label="Настройки">⚙️</button>
+  </header>
+
+  <div class="banner" id="unsupported" hidden>
+    Этот браузер не поддерживает распознавание речи. Откройте приложение в <b>Google Chrome</b>
+    (Android / Windows / macOS) или <b>Safari</b> (iPhone / iPad).
+  </div>
+
+  <main>
+    <section class="live" aria-live="polite">
+      <div class="live-ru" id="liveRu"><span class="placeholder">Нажмите на микрофон и дайте собеседнику говорить…</span></div>
+      <div class="live-he" id="liveHe" dir="rtl" lang="he"></div>
+    </section>
+
+    <section class="history" id="history" aria-label="История"></section>
+  </main>
+
+  <footer class="controls">
+    <button class="ctrl" id="speakBtn" aria-pressed="false" title="Озвучивать перевод">🔇<small>Голос</small></button>
+    <button class="mic" id="micBtn" aria-pressed="false" aria-label="Старт / стоп">🎤</button>
+    <button class="ctrl" id="clearBtn" title="Очистить историю">🗑️<small>Очистить</small></button>
+  </footer>
+
+  <dialog id="settings">
+    <form method="dialog" class="settings-form">
+      <h2>Настройки</h2>
+
+      <label>Переводчик
+        <select id="provider">
+          <option value="google">Google Translate (бесплатно, быстро)</option>
+          <option value="mymemory">MyMemory (бесплатно, запасной)</option>
+          <option value="claude">Claude AI (лучшее качество, нужен API-ключ)</option>
+        </select>
+      </label>
+
+      <div id="claudeOpts">
+        <label>Модель Claude
+          <select id="model">
+            <option value="claude-opus-5-5">Claude Opus 5.5 — максимальное качество</option>
+            <option value="claude-sonnet-5-5">Claude Sonnet 5.5 — баланс</option>
+            <option value="claude-haiku-5-5">Claude Haiku 5.5 — самый быстрый и дешёвый</option>
+          </select>
+        </label>
+        <label>Anthropic API-ключ
+          <input id="apiKey" type="password" autocomplete="off" placeholder="sk-ant-…">
+        </label>
+        <p class="hint">Ключ хранится только в этом браузере. Пока собеседник говорит, черновой перевод
+          показывается через Google, а законченная фраза переводится Claude с учётом контекста разговора.</p>
+      </div>
+
+      <label>Размер текста
+        <input id="fontSize" type="range" min="18" max="56" step="2">
+      </label>
+
+      <label class="check"><input id="muteWhileSpeaking" type="checkbox">
+        Не слушать, пока звучит перевод (если нет наушников — чтобы микрофон не ловил озвучку)</label>
+
+      <label class="check"><input id="showHebrew" type="checkbox"> Показывать исходный текст на иврите</label>
+
+      <label>Скорость озвучки
+        <input id="rate" type="range" min="0.8" max="1.8" step="0.1">
+      </label>
+
+      <menu><button value="close" class="primary">Готово</button></menu>
+    </form>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

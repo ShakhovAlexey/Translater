@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#2563eb"/>
+  <text x="150" y="300" font-family="Arial, sans-serif" font-size="170" font-weight="700" fill="#fff" text-anchor="middle">א</text>
+  <path d="M230 256h80m-30-30 30 30-30 30" stroke="#fff" stroke-width="22" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="380" y="310" font-family="Arial, sans-serif" font-size="170" font-weight="700" fill="#fff" text-anchor="middle">Я</text>
+</svg>
